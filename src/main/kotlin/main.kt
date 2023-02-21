@@ -22,55 +22,48 @@ fun main() {
 
 // part 6.2
 interface Attachment {
-   val id: Int
    val type: String
 }
-
-interface Audio: Attachment {
+data class AudioAttachment(val audio: Audio): Attachment {
+   override val type: String = "Audio"
 }
-interface Video: Attachment {
-}
-interface Photo: Attachment {
-}
-interface File: Attachment {
-}
-interface History: Attachment {
-}
-
-data class AudioAttachment(
-   override val id: Int,
-   override val type: String = "Audio",
+data class Audio(
+   val id: Int,
    val duration: Int,
    val artist: String
-) : Audio
-
-data class VideoAttachment(
-   override val id: Int,
-   override val type: String = "Video",
+)
+data class VideoAttachment(val video: Video): Attachment {
+   override val type: String = "Video"
+}
+data class Video(
+   val id: Int,
    val platform: Int,
    val title: String
-) : Video
-
-data class PhotoAttachment(
-   override val id: Int,
-   override val type: String = "Photo",
+)
+data class PhotoAttachment(val photo: Photo): Attachment {
+   override val type: String = "Photo"
+}
+data class Photo(
+   val id: Int,
    val width: Int,
    val height: Int
-) : Photo
-
-data class FileAttachment(
-   override val id: Int,
-   override val type: String = "File",
+)
+data class FileAttachment(val file: File): Attachment {
+   override val type: String = "File"
+}
+data class File(
+   val id: Int,
    val size: Int,
    val url: String
-) : File
-
-data class HistoryAttachment(
-   override val id: Int,
-   override val type: String = "History",
+)
+data class HistoryAttachment(val history: History): Attachment {
+   override val type: String = "History"
+}
+data class History(
+   val id: Int,
    val can_see: Int,
    val seen: Int
-) : History
+)
 // __end of part 6.2__
 
 data class Post(
